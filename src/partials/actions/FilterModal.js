@@ -1,7 +1,130 @@
 import React, { useState, useRef, useEffect } from 'react';
+import * as util from "util";
+
+const genderList = [{
+        title: "Мужской",
+        id: 1
+    },{
+        title: "Женский",
+        id: 2
+}];
+const ageList = [{
+    title: "18-25",
+    id: 1
+}, {
+    title: "26-30",
+    id: 2
+}, {
+    title: "31-35",
+    id: 3
+}, {
+    title: "36-40",
+    id: 4
+}, {
+    title: "41-45",
+    id: 5
+}, {
+    title: "46-50",
+    id: 6
+}, {
+    title: "51-55",
+    id: 7
+}, {
+    title: "56+",
+    id: 8
+}];
+const kindList = [{
+    title: "Госсектор",
+    id: 1
+}, {
+    title: "Корпорация",
+    id: 2
+}, {
+    title: "Фриланс",
+    id: 3
+}, {
+    title: "Предприниматель",
+    id: 4
+}]
 
 export default function FilterModal() {
     const [showModal, setShowModal] = React.useState(false);
+    const [gender, setGender] = React.useState([]);
+    const [age, setAge] = React.useState([]);
+    const [kind, setKind] = React.useState([]);
+
+    useEffect(() => {
+        console.log('gender', gender)
+        console.log('age', age)
+        console.log(kind)
+    }, [gender, age, kind])
+
+
+    // const toggleBtn = useCallback( )
+
+    const renderGenderButtons = () => {
+        let onClickGender = (isActive, genderItem) => {
+            if(isActive){
+                setGender(gender.filter(({title}) => title !== genderItem.title))
+            }else{
+                setGender([...gender, genderItem])
+            }
+        }
+        return renderBtn(genderList, gender, onClickGender)
+    }
+
+    const renderAgeButtons = () => {
+        let onClickAge = (isActive, ageItem) => {
+            if(isActive){
+                setAge(age.filter(({title}) => title !== ageItem.title))
+            }else{
+                setAge([...age, ageItem])
+            }
+        }
+        return renderBtn(ageList, age, onClickAge)
+    }
+
+    const renderKindButtons = () => {
+        let onClickAge = (isActive, kindItem) => {
+            if(isActive){
+                setKind(kind.filter(({title}) => title !== kindItem.title))
+            }else{
+                setKind([...kind, kindItem])
+            }
+        }
+        return renderBtn(kindList, kind, onClickAge, )
+    }
+
+    const renderBtn = (array, activeArray, callback) => {
+        if(array.length){
+            return array.map((item) => {
+                let isActive = activeArray.includes(item);
+                return <button
+                    key={item.id}
+                    className={`hover:bg-blue-900 focus:outline-none transform hover:scale-105 transition duration-500 ease-in-out text-white py-2 mx-2 px-4 rounded ` + (isActive ? `bg-blue-900` : `bg-blue-500`)}
+                    onClick={() => callback(isActive, item)}
+                >
+                    {item.title}
+                </button>
+            })
+        }else{
+            return null
+        }
+    }
+
+    const filterHandler = () => {
+
+        let data = {
+            gender: gender.length ? gender.map(item => item.id) : genderList.map(item => item.id),
+            age: age.length ? age.map(item => item.id) : ageList.map(item => item.id),
+            kind: kind.length ? kind.map(item => item.id) : kindList.map(item => item.id)
+        }
+
+        console.log(data)
+
+        // setShowModal(false)
+    }
+
     return (
         <>
             <button
@@ -14,56 +137,61 @@ export default function FilterModal() {
             {showModal ? (
                 <>
                     <div
-                        className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none"
+                        className="animated fadeIn jus justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none"
                     >
-                        <div className="relative w-auto my-6 mx-auto max-w-9xl">
+                        <div className="animated fadeIn relative my-6 mx-auto min-w-500 w-10/12 ">
                             {/*content*/}
-                            <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+                            <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none h-4/5">
                                 {/*header*/}
                                 <div className="flex items-start justify-between p-5 border-b border-solid border-blueGray-200 rounded-t">
                                     <h3 className="text-3xl font-semibold">
-                                        Modal Title
+                                        Фильтр по группам пользователей
                                     </h3>
                                     <button
-                                        className="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
+                                        className="p-1 ml-auto bg-transparent border-0 text-black float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
                                         onClick={() => setShowModal(false)}
                                     >
-                    <span className="bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none">
-                      ×
-                    </span>
+                                        <span className="bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none">
+                                          ×
+                                        </span>
                                     </button>
                                 </div>
                                 {/*body*/}
                                 <div className="relative p-6 flex-auto">
-                                    <p className="my-4 text-blueGray-500 text-lg leading-relaxed">
-                                        I always felt like I could do anything. That’s the main
-                                        thing people are controlled by! Thoughts- their perception
-                                        of themselves! They're slowed down by their perception of
-                                        themselves. If you're taught you can’t do anything, you
-                                        won’t do anything. I was taught I could do everything.
-                                    </p>
+                                    <div className="grid grid-cols-6 gap-4 my-4 mx-6">
+                                        <div className="col-span-2 justify-self-end w-24">Пол</div>
+                                        <div className="col-span-4">{renderGenderButtons()}</div>
+                                        <div className="col-span-2 justify-self-end w-24">Возраст</div>
+                                        <div className="col-span-4 grid grid-cols-2 gap-4 w-36 auto-cols-fr">{renderAgeButtons()}</div>
+                                        <div className="col-span-2 justify-self-end  w-24">Занятость</div>
+                                        <div className="col-span-4">{renderKindButtons()}</div>
+                                    </div>
+                                    <div>
+                                        {/*{renderBtn(activeBtn)}*/}
+                                    </div>
                                 </div>
                                 {/*footer*/}
-                                <div className="flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b">
+                                <div className="flex items-center justify-center p-6 border-t border-solid border-blueGray-200 rounded-b">
+                                    {/*<button*/}
+                                    {/*    className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"*/}
+                                    {/*    type="button"*/}
+                                    {/*    onClick={() => setShowModal(false)}*/}
+                                    {/*>*/}
+                                    {/*    Close*/}
+                                    {/*</button>*/}
                                     <button
-                                        className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                                        className="bg-green-500 text-white active:bg-green-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150 disabled:opacity-50"
                                         type="button"
-                                        onClick={() => setShowModal(false)}
+                                        onClick={filterHandler}
+                                        disabled={(!age.length && !kind.length && !gender.length)}
                                     >
-                                        Close
-                                    </button>
-                                    <button
-                                        className="bg-green-500 text-white active:bg-green-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                                        type="button"
-                                        onClick={() => setShowModal(false)}
-                                    >
-                                        Filter
+                                        Фильтровать
                                     </button>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
+                    <div className="opacity-25 fixed inset-0 z-40 bg-black" onClick={() => console.log('sd') }/>
                 </>
             ) : null}
         </>

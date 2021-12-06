@@ -16,6 +16,7 @@ module.exports = {
         gray: colors.blueGray,
         'light-blue': colors.sky,
         red: colors.rose,
+        purple: colors.purple
       },
       outline: {
         blue: '2px solid rgba(0, 112, 244, 0.5)',
@@ -48,6 +49,7 @@ module.exports = {
         60: '15rem',
         72: '18rem',
         80: '20rem',
+        500: '500px'
       },
       maxWidth: {
         '8xl': '88rem',
@@ -56,6 +58,7 @@ module.exports = {
       zIndex: {
         60: '60',
       },
+      animation: ['motion-reduce']
     },
   },
   plugins: [
