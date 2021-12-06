@@ -6,6 +6,7 @@ import WelcomeBanner from '../partials/dashboard/WelcomeBanner';
 import DashboardAvatars from '../partials/dashboard/DashboardAvatars';
 import FilterButton from '../partials/actions/FilterButton';
 import Datepicker from '../partials/actions/Datepicker';
+import FilterModal from "../partials/actions/FilterModal";
 import DashboardCard01 from '../partials/dashboard/DashboardCard01';
 import DashboardCard02 from '../partials/dashboard/DashboardCard02';
 import DashboardCard03 from '../partials/dashboard/DashboardCard03';
@@ -63,6 +64,8 @@ function Dashboard() {
                 {/*    <span className="hidden xs:block ml-2">Add view</span>*/}
                 {/*</button>                */}
               </div>
+
+              <FilterModal/>
 
             </div>
 
