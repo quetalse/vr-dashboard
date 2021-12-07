@@ -54,13 +54,7 @@ export default function FilterModal() {
     const [kind, setKind] = React.useState([]);
 
     useEffect(() => {
-        console.log('gender', gender)
-        console.log('age', age)
-        console.log(kind)
     }, [gender, age, kind])
-
-
-    // const toggleBtn = useCallback( )
 
     const renderGenderButtons = () => {
         let onClickGender = (isActive, genderItem) => {
@@ -98,14 +92,24 @@ export default function FilterModal() {
     const renderBtn = (array, activeArray, callback) => {
         if(array.length){
             return array.map((item) => {
-                let isActive = activeArray.includes(item);
-                return <button
-                    key={item.id}
-                    className={`hover:bg-blue-900 focus:outline-none transform hover:scale-105 transition duration-500 ease-in-out text-white py-2 mx-2 px-4 rounded ` + (isActive ? `bg-blue-900` : `bg-blue-500`)}
-                    onClick={() => callback(isActive, item)}
-                >
-                    {item.title}
-                </button>
+                if(activeArray){
+                    let isActive = activeArray.includes(item);
+                    return <button
+                        key={`${item.id}-${item.title}`}
+                        className={`hover:bg-blue-900 focus:outline-none transform hover:scale-105 transition duration-500 ease-in-out text-white py-2 px-4 rounded ` + (isActive ? `bg-blue-900` : `bg-blue-500`)}
+                        onClick={() => callback(isActive, item)}
+                    >
+                        {item.title}
+                    </button>
+                }else{
+                    return <span
+                        key={`${item.id}-${item.title}`}
+                        className={`text-xs px-2 my-1 font-medium bg-gray-500 bg-opacity-10 text-gray-800 rounded py-0.5 flex items-center`}
+                    >
+                        <i className="inline-block w-1 h-1 rounded-full bg-gray-500 mx-1"/>
+                        {item.title}
+                    </span>
+                }
             })
         }else{
             return null
@@ -159,15 +163,15 @@ export default function FilterModal() {
                                 {/*body*/}
                                 <div className="relative p-6 flex-auto">
                                     <div className="grid grid-cols-6 gap-4 my-4 mx-6">
-                                        <div className="col-span-2 justify-self-end w-24">Пол</div>
-                                        <div className="col-span-4">{renderGenderButtons()}</div>
-                                        <div className="col-span-2 justify-self-end w-24">Возраст</div>
-                                        <div className="col-span-4 grid grid-cols-2 gap-4 w-36 auto-cols-fr">{renderAgeButtons()}</div>
-                                        <div className="col-span-2 justify-self-end  w-24">Занятость</div>
-                                        <div className="col-span-4">{renderKindButtons()}</div>
+                                        <div className="col-start-2 col-end-3 justify-self-end self-center w-24">Пол</div>
+                                        <div className="col-start-3 col-end-5 grid grid-cols-2 gap-1">{renderGenderButtons()}</div>
+                                        <div className="col-start-2 col-end-3 justify-self-end self-center w-24">Возраст</div>
+                                        <div className="col-start-3 col-end-5 grid grid-cols-4 gap-1 auto-cols-fr">{renderAgeButtons()}</div>
+                                        <div className="col-start-2 col-end-3 justify-self-end self-center w-24">Занятость</div>
+                                        <div className="col-start-3 col-end-5 grid grid-cols-2 gap-1 ">{renderKindButtons()}</div>
                                     </div>
-                                    <div>
-                                        {/*{renderBtn(activeBtn)}*/}
+                                    <div className="h-9 flex space-x-2 flex-wrap">
+                                        {renderBtn([...gender, ...age, ...kind])}
                                     </div>
                                 </div>
                                 {/*footer*/}
