@@ -1,53 +1,9 @@
-import React, { useState, useRef, useEffect } from 'react';
-import {useDispatch, useSelector} from "react-redux";
-import * as util from "util";
-import {group} from "../../store/reducers/group";
+import React, { useEffect } from 'react';
+import {useDispatch } from "react-redux";
+// import * as util from "util";
 
-const genderList = [{
-        title: "Мужской",
-        id: 1
-    },{
-        title: "Женский",
-        id: 2
-}];
-const ageList = [{
-    title: "18-25",
-    id: 1
-}, {
-    title: "26-30",
-    id: 2
-}, {
-    title: "31-35",
-    id: 3
-}, {
-    title: "36-40",
-    id: 4
-}, {
-    title: "41-45",
-    id: 5
-}, {
-    title: "46-50",
-    id: 6
-}, {
-    title: "51-55",
-    id: 7
-}, {
-    title: "56+",
-    id: 8
-}];
-const kindList = [{
-    title: "Госсектор",
-    id: 1
-}, {
-    title: "Корпорация",
-    id: 2
-}, {
-    title: "Фриланс",
-    id: 3
-}, {
-    title: "Предприниматель",
-    id: 4
-}]
+import {setGroup} from "../../store/actions/filter";
+import {filters} from "../../store/configData";
 
 export default function FilterModal() {
 
@@ -69,7 +25,7 @@ export default function FilterModal() {
                 setGender([...gender, genderItem])
             }
         }
-        return renderBtn(genderList, gender, onClickGender)
+        return renderBtn(filters.genderList, gender, onClickGender)
     }
 
     const renderAgeButtons = () => {
@@ -80,7 +36,7 @@ export default function FilterModal() {
                 setAge([...age, ageItem])
             }
         }
-        return renderBtn(ageList, age, onClickAge)
+        return renderBtn(filters.ageList, age, onClickAge)
     }
 
     const renderKindButtons = () => {
@@ -91,7 +47,7 @@ export default function FilterModal() {
                 setKind([...kind, kindItem])
             }
         }
-        return renderBtn(kindList, kind, onClickAge, )
+        return renderBtn(filters.kindList, kind, onClickAge)
     }
 
     const renderBtn = (array, activeArray, callback) => {
@@ -124,14 +80,15 @@ export default function FilterModal() {
     const filterHandler = () => {
 
         let data = {
-            gender: gender.length ? gender.map(item => item.id) : genderList.map(item => item.id),
-            age: age.length ? age.map(item => item.id) : ageList.map(item => item.id),
-            kind: kind.length ? kind.map(item => item.id) : kindList.map(item => item.id)
+            gender: gender.length ? gender.map(item => item.id) : filters.genderList.map(item => item.id),
+            age: age.length ? age.map(item => item.id) : filters.ageList.map(item => item.id),
+            kind: kind.length ? kind.map(item => item.id) : filters.kindList.map(item => item.id)
         }
+        dispatch(setGroup(data))
 
-        console.log(data)
+        // dispatch(getGroupData(data))
 
-        // setShowModal(false)
+        setShowModal(false)
     }
 
     return (

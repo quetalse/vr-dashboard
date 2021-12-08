@@ -11,8 +11,8 @@ const handlers = {
 
 const initialState = {
     data: {
-        totalTime: null,        // 1. Общее время от старта до финиша
-        feedbackTime: null,     // 2. Время на изучение фидбека
+        totalTime: null,        // 1. Общее время от старта до финиша - число
+        feedbackTime: null,     // 2. Время на изучение фидбека - число
         timeByQuestion: null,   // 3. Время прохождения каждого вопроса учитывая ошибки - накопительный бар
         scoreByQuestion: null,  // 4. Количество очков для каждого вопроса учитывая ошибки - накопительный бар
 

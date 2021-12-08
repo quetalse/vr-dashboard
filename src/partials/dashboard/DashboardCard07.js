@@ -1,6 +1,8 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import Loader from "../Loader";
+import {useDispatch, useSelector} from "react-redux";
+import {setPerson} from "../../store/actions/filter";
 
 const personStatus = {
   '1': 'Начал обучение',
@@ -73,9 +75,15 @@ const personList = [
 
 function DashboardCard07() {
 
-  let history = useHistory();
+  const history = useHistory();
+  const dispatch = useDispatch();
 
-  const clickPerson = (id) => {
+  const state = useSelector(state => {
+    return state.group
+  });
+
+  const clickPerson = (id, name) => {
+    dispatch(setPerson(name))
     history.push(`/person/${id}`)
   }
 
@@ -90,7 +98,7 @@ function DashboardCard07() {
               key={id}
               className="hover:bg-gray-200 cursor-pointer"
               onClick={ () => {
-                clickPerson(id)
+                clickPerson(id, name)
               }}
           >
             <td className="p-2">
@@ -164,7 +172,7 @@ function DashboardCard07() {
             {/* Table body */}
             <tbody className="text-sm font-medium divide-y divide-gray-100">
 
-              { renderTable(personList) }
+              { (state.loading || !state.data.personList) ? null : renderTable(personList) }
               {/*/!* Row *!/*/}
               {/*<tr>*/}
               {/*  <td className="p-2">*/}
@@ -287,7 +295,7 @@ function DashboardCard07() {
               {/*</tr>*/}
             </tbody>
           </table>
-          {/*<Loader/>*/}
+          {(state.loading || !state.data.personList) ? <Loader/> : null}
         </div>
       </div>
     </div>
