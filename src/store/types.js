@@ -6,3 +6,8 @@ export const SET_PERSON_DATA = "SET_PERSON_DATA";
 export const SET_PERSON_LOADING = "SET_PERSON_LOADING";
 export const SET_PERSON_ERROR = "SET_PERSON_ERROR";
 
+export const SET_PERSON = "SET_PERSON";
+export const SET_GROUP = "SET_GROUP";
+
+
+

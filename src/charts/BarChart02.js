@@ -42,19 +42,19 @@ function BarChart02({
             beginAtZero: true,
             ticks: {
               maxTicksLimit: 5,
-              callback: (value) => formatValue(value),
+              // callback: (value) => formatValue(value),
             },
           },
           x: {
             stacked: true,
-            type: 'time',
-            time: {
-              parser: 'MM-DD-YYYY',
-              unit: 'month',
-              displayFormats: {
-                month: 'MMM YY',
-              },
-            },
+            // type: 'time',
+            // time: {
+            //   parser: 'MM-DD-YYYY',
+            //   unit: 'month',
+            //   displayFormats: {
+            //     month: 'MMM YY',
+            //   },
+            // },
             grid: {
               display: false,
               drawBorder: false,
@@ -72,7 +72,8 @@ function BarChart02({
           tooltip: {
             callbacks: {
               title: () => false, // Disable tooltip title
-              label: (context) => formatValue(context.parsed.y),
+              // label: (context) => formatValue(context.parsed.y),
+              label: (context) => context.parsed.y,
             },
           },
         },

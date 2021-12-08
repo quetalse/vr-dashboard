@@ -1,5 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
+import {useDispatch, useSelector} from "react-redux";
 import * as util from "util";
+import {group} from "../../store/reducers/group";
 
 const genderList = [{
         title: "Мужской",
@@ -48,6 +50,9 @@ const kindList = [{
 }]
 
 export default function FilterModal() {
+
+    const dispatch = useDispatch();
+
     const [showModal, setShowModal] = React.useState(false);
     const [gender, setGender] = React.useState([]);
     const [age, setAge] = React.useState([]);
@@ -136,7 +141,7 @@ export default function FilterModal() {
                 type="button"
                 onClick={() => setShowModal(true)}
             >
-                Filters
+                Фильтровать
             </button>
             {showModal ? (
                 <>

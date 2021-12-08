@@ -11,7 +11,8 @@ import { focusHandling } from 'cruip-js-toolkit';
 import './charts/ChartjsConfig';
 
 // Import pages
-import Dashboard from './pages/Dashboard';
+import DashboardGroup from './pages/DashboardGroup';
+import DashboardPerson from './pages/DashboardPerson';
 
 function App() {
 
@@ -28,7 +29,10 @@ function App() {
     <>
       <Switch>
         <Route exact path="/">
-          <Dashboard />
+          <DashboardGroup/>
+        </Route>
+        <Route path='/person/:id'>
+          <DashboardPerson/>
         </Route>
       </Switch>
     </>
