@@ -19,7 +19,9 @@ export const getGroupData = (data) => async dispatch => {
 
     try{
 
-        const result = await axios.get('https://585d5393-65a7-45fb-aad2-d49356bd0abf.mock.pstmn.io/group');
+        const result = await axios.get('https://585d5393-65a7-45fb-aad2-d49356bd0abf.mock.pstmn.io/group',  {
+            params: data
+        });
 
         dispatch({
             type: SET_GROUP_DATA,

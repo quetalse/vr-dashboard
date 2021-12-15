@@ -26,7 +26,7 @@ function App() {
   }, [location.pathname]); // triggered on route change
 
   return (
-    <>
+    <div className="select-none">
       <Switch>
         <Route exact path="/">
           <DashboardGroup/>
@@ -35,7 +35,7 @@ function App() {
           <DashboardPerson/>
         </Route>
       </Switch>
-    </>
+    </div>
   );
 }
 

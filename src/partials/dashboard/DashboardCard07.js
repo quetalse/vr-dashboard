@@ -93,6 +93,9 @@ function DashboardCard07() {
       let repeatIcon = repeat ? <span className="text-xs px-2 font-medium bg-red-500 text-white rounded-full py-0.5"/> :
           <span className="text-xs px-2 font-medium bg-green-500 text-white rounded-full py-0.5"/>
 
+      let statusIcon = personStatus[status].toLowerCase() === 'завершен' ? <span className="text-xs px-2 font-medium bg-green-500 text-white rounded-full py-0.5"/> :
+          personStatus[status]
+
       return (
           <tr
               key={id}
@@ -126,7 +129,7 @@ function DashboardCard07() {
               <div className="text-center text-light-blue-500">{repeatIcon}</div>
             </td>
             <td className="p-2">
-              <div className="text-center text-light-blue-500">{personStatus[status]}</div>
+              <div className="text-center text-light-blue-500">{statusIcon}</div>
             </td>
           </tr>
       )

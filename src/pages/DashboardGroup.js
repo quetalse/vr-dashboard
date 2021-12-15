@@ -35,8 +35,6 @@ function DashboardGroup() {
 
   useEffect(() => {
 
-    console.log('state.group', state.group)
-
     dispatch(getGroupData(state.group))
 
   }, [dispatch, state.group])
