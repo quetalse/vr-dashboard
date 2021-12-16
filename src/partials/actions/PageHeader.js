@@ -6,8 +6,14 @@ import {filters} from "../../store/configData";
 export default function PageHeader({page}) {
 
     const data = useSelector(state => {
-        return state.filter[page]
+        if(page === 'group'){
+            return state.filter[page]
+        }else {
+            return state[page].data.profile?.name
+        }
     });
+
+    console.log('data', data)
 
     const renderTitle = () => {
         if(page === 'group'){

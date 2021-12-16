@@ -6,7 +6,8 @@ export const filters = {
         },{
             title: "Женский",
             id: 2
-    }],
+    }
+    ],
     ageList: [
         {
             title: "18-25",

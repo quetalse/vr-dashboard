@@ -14,7 +14,10 @@ const initialState = {
     group: {
         age: filters.ageList.map(item => item.id),
         gender: filters.genderList.map(item => item.id),
-        kind: filters.kindList.map(item => item.id)
+        kind: filters.kindList.map(item => item.id),
+        // age: null,
+        // gender: null,
+        // kind: null
     }
 };
 

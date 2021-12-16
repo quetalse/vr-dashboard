@@ -17,6 +17,8 @@ function BarChart02({
   height
 }) {
 
+
+
   const canvas = useRef(null);
 
   useEffect(() => {

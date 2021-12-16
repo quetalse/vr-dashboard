@@ -16,7 +16,8 @@ const initialState = {
         percentByStage: null,   // 3. Проценты по этапам бары
         averageTime: null,      // 4. Среднее время просмотра
         repeatByQuestion: null, // 5. Количество повторных нажатий по вопросам
-        personList: null        // 6. Список прошедших обучение поимённо
+        personList: null,        // 6. Список прошедших обучение поимённо
+        usersCount: null
     },
     loading: false,
     error: false

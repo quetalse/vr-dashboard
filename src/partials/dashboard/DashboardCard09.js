@@ -10,7 +10,7 @@ import Loader from "../Loader";
 
 const colors = {
   1: ['indigo'],
-  2: ['green', 'yellow', 'red']
+  2: ['red', 'yellow', 'green']
 }
 
 function DashboardCard09({title, description, data, page, size}) {
@@ -37,7 +37,6 @@ function DashboardCard09({title, description, data, page, size}) {
         }
     })
 
-
     return {
       labels: labels,
       datasets: datasets
@@ -45,7 +44,6 @@ function DashboardCard09({title, description, data, page, size}) {
 
     // console.log('labels', labels)
     // console.log('dataset', dataset)
-
   }
 
   // const chartData = {
@@ -96,13 +94,13 @@ function DashboardCard09({title, description, data, page, size}) {
         {(state.loading || !state.data[data]) ? <Loader/> : (
           <div>
             <div className="flex items-start">
-              <div className="text-3xl font-bold text-gray-800 mr-2">245</div>
+              {/*<div className="text-3xl font-bold text-gray-800 mr-2">245</div>*/}
               {/*<div className="text-sm font-semibold text-white px-1.5 bg-yellow-500 rounded-full">-34%</div>*/}
             </div>
             {/* Chart built with Chart.js 3 */}
             <div className="flex-grow">
               {/* Change the height attribute to adjust the chart height */}
-              <BarChart data={chartDataFormat(testData[page][data])} width={595} height={248} />
+              <BarChart data={chartDataFormat(state.data[data])} width={595} height={300} />
             </div>
           </div>
         )}

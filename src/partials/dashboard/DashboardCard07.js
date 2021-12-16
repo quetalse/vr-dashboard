@@ -5,9 +5,9 @@ import {useDispatch, useSelector} from "react-redux";
 import {setPerson} from "../../store/actions/filter";
 
 const personStatus = {
-  '1': 'Начал обучение',
-  '2': 'В процессе',
-  '3': 'Завершен'
+  '0': 'Начал обучение',
+  '1': 'В процессе',
+  '2': 'Завершен'
 }
 
 const personList = [
@@ -83,8 +83,10 @@ function DashboardCard07() {
   });
 
   const clickPerson = (id, name) => {
-    dispatch(setPerson(name))
-    history.push(`/person/${id}`)
+    dispatch(setPerson(name));
+
+    window.open(`/#/person/${id}`)
+    // history.push(`/person/${id}`)
   }
 
   const renderTable = (array) => {
@@ -138,8 +140,9 @@ function DashboardCard07() {
 
   return (
     <div className="col-span-full xl:col-span-12 bg-white shadow-lg rounded-sm border border-gray-200">
-      <header className="px-5 py-4 border-b border-gray-100">
-        <h2 className="font-semibold text-gray-800">Список пользователей</h2>
+      <header className="px-5 py-4 border-b border-gray-100 ">
+        <h2 className="font-semibold text-gray-800 inline-block">Список пользователей</h2>
+        <span> ({ (state.loading || !state.data.personList) ? null : state.data.usersCount })</span>
       </header>
       <div className="p-3">
 
@@ -175,7 +178,7 @@ function DashboardCard07() {
             {/* Table body */}
             <tbody className="text-sm font-medium divide-y divide-gray-100">
 
-              { (state.loading || !state.data.personList) ? null : renderTable(personList) }
+              { (state.loading || !state.data.personList) ? null : renderTable(state.data.personList) }
               {/*/!* Row *!/*/}
               {/*<tr>*/}
               {/*  <td className="p-2">*/}

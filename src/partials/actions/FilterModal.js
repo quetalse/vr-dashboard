@@ -82,7 +82,11 @@ export default function FilterModal() {
         let data = {
             gender: gender.length ? gender.map(item => item.id) : filters.genderList.map(item => item.id),
             age: age.length ? age.map(item => item.id) : filters.ageList.map(item => item.id),
-            kind: kind.length ? kind.map(item => item.id) : filters.kindList.map(item => item.id)
+            kind: kind.length ? kind.map(item => item.id) : filters.kindList.map(item => item.id),
+
+            // gender: gender.length ? gender.map(item => item.id) : null,
+            // age: age.length ? age.map(item => item.id) : null,
+            // kind: kind.length ? kind.map(item => item.id) : null
         }
         dispatch(setGroup(data))
 

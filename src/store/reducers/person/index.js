@@ -20,7 +20,7 @@ const initialState = {
         scoreByStage: null,     // 6. Баллы за каждый этап - бар
         percentByStage: null,   // 7. Проценты за каждый этап
 
-        personData: null        // Инфо о пользователе
+        profile: null        // Инфо о пользователе
     },
     loading: false,
     error: false

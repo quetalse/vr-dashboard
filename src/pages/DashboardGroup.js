@@ -58,7 +58,7 @@ function DashboardGroup() {
             {/*<WelcomeBanner />*/}
 
             {/* Dashboard actions */}
-            <div className="sm:flex sm:justify-between sm:items-center mb-8">
+            <div className="sm:flex sm:justify-between sm:items-center mb-8 flex-wrap">
 
               {/* Left: Avatars */}
               {/*<DashboardAvatars />*/}
@@ -101,7 +101,6 @@ function DashboardGroup() {
                   data="percentByStage"
                   size="half"
               />
-
 
                {/*Line chart (Sales Over Time) */}
               <DashboardCard08

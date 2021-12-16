@@ -29,15 +29,15 @@ import {getPersonData} from "../store/actions/person";
 
 function DashboardPerson() {
 
-  const { personId } = useParams();
+  const { id } = useParams();
   const history = useHistory();
   const dispatch = useDispatch();
 
   useEffect(() => {
 
-    dispatch(getPersonData(personId))
+    dispatch(getPersonData(id))
 
-  }, [dispatch, personId])
+  }, [dispatch, id])
 
   return (
     <div className="flex h-screen overflow-hidden">
@@ -58,13 +58,13 @@ function DashboardPerson() {
             {/*<WelcomeBanner />*/}
 
             {/* Dashboard actions */}
-            <div className="sm:flex sm:justify-between sm:items-center mb-8">
+            <div className="sm:flex sm:justify-between sm:items-center mb-8 flex-wrap">
 
               {/* Left: Avatars */}
               {/*<DashboardAvatars />*/}
 
               {/* Right: Actions */}
-              <div className="grid grid-flow-col sm:auto-cols-max justify-start sm:justify-end gap-2">
+              <div className="grid grid-flow-col sm:auto-cols-max justify-start sm:justify-end gap-2 ">
                 {/* Filter button */}
                 {/*<FilterButton />*/}
                 {/* Datepicker built with flatpickr */}
@@ -112,8 +112,8 @@ function DashboardPerson() {
 
               {/* Stacked bar chart (Sales VS Refunds) */}
               <DashboardCard09
-                  title="Время прохождения каждого вопроса учитывая ошибки"
-                  description="Диаграмма со всеми вопросами, показываем секунды на каждый вопрос) (если у пользователя был сначала неверный, а потом верный ответ, то суммируем время прохождения)"
+                  title="Количество баллов для каждого вопроса учитывая ошибки"
+                  description="Диаграмма"
                   page="person"
                   data="scoreByQuestion"
                   size="full"
@@ -142,7 +142,7 @@ function DashboardPerson() {
                   description="Диаграмма со всеми вопросами, показываем секунды на каждый вопрос) (если у пользователя был сначала неверный, а потом верный ответ, то суммируем время прохождения)"
                   page="person"
                   data="percentByStage"
-                  size="half"
+                  size="full"
               />
 
 
