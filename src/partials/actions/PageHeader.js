@@ -12,9 +12,6 @@ export default function PageHeader({page}) {
             return state[page].data.profile?.name
         }
     });
-
-    console.log('data', data)
-
     const renderTitle = () => {
         if(page === 'group'){
             let age = data.age.map(id => {

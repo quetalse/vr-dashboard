@@ -8,6 +8,8 @@ import {testData} from "../../store/configData";
 import {useSelector} from "react-redux";
 import Loader from "../Loader";
 
+import error from '../../images/error.svg';
+
 const colors = {
   1: ['indigo'],
   2: ['red', 'yellow', 'green']
@@ -100,7 +102,8 @@ function DashboardCard09({title, description, data, page, size}) {
             {/* Chart built with Chart.js 3 */}
             <div className="flex-grow">
               {/* Change the height attribute to adjust the chart height */}
-              <BarChart data={chartDataFormat(state.data[data])} width={595} height={300} />
+              { state.data[data].length === 0 ? <h2 style={{height: "300px"}} className="text-3xl flex items-center	justify-center flex-col">
+                <img src={error} width="50" alt=""/>нет данных</h2> : <BarChart data={chartDataFormat(state.data[data])} width={595} height={300} />}
             </div>
           </div>
         )}
