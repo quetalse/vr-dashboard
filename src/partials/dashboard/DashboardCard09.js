@@ -23,7 +23,24 @@ function DashboardCard09({title, description, data, page, size}) {
 
   const chartDataFormat = (arrayData) => {
 
-    let labels = arrayData.map(item => item.label);
+    let labels = arrayData.map(item => {
+
+      let arrayValue = item.label.split(' ');
+
+      if(item.label.length > 10 && arrayValue.length > 1){
+
+        console.log(`${arrayValue[0].slice(0, 7)}. ${arrayValue[1].slice(0, 7)}.`)
+
+        return `${arrayValue[0].slice(0, 7)}. ${arrayValue[1].slice(0, 7)}.`
+        // return `1`
+      }
+
+      console.log(item.label)
+
+      return item.label
+      // return '1'
+    });
+
 
     let datasets = arrayData[0].data.map((value, index) => {
         let color = arrayData[0].data.length > 1 ? colors[2] : colors[1]
