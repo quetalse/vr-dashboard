@@ -12,6 +12,10 @@ function DashboardCard08({title, data, page}) {
         return state[page]
     });
 
+    const getValue = (value) => {
+        return value % 1 === 0 ? value : value.toFixed(2)
+    }
+
   return (
     <div className="flex flex-col col-span-full sm:col-span-6 bg-white shadow-lg rounded-sm border border-gray-200">
       <header className="px-5 py-4 border-b border-gray-100 flex items-center">
@@ -23,7 +27,7 @@ function DashboardCard08({title, data, page}) {
         {(state.loading || state.data[data] === null) ? <Loader/> : (
             <div>
                 <div className="flex w-full  items-start justify-center">
-                    <div className="text-8xl font-bold text-gray-800 mr-2 text-center">{state.data[data]} сек.</div>
+                    <div className="text-8xl font-bold text-gray-800 mr-2 text-center">{getValue(state.data[data])} сек.</div>
                     {/*<div className="text-sm font-semibold text-white px-1.5 bg-yellow-500 rounded-full">-22%</div>*/}
                 </div>
                 <div className="flex-grow ml-2 mb-1">

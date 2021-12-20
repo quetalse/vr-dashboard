@@ -67,8 +67,12 @@ function BarChart02({
               drawBorder: false,
             },
             ticks: {
-              autoSkipPadding: 48,
+              // autoSkipPadding: 48,
               maxRotation: 0,
+              font: {
+                size: 12,
+                // weight: "bold"
+              }
             },
           },
         },
@@ -99,7 +103,8 @@ function BarChart02({
             align: 'center',
             formatter: (val) => {
               if (val === 0) return ''
-              return (`${val}`)
+              let value = val % 1 === 0 ? val : val.toFixed(2)
+              return (`${value}`)
             },
             labels: {
               value: {

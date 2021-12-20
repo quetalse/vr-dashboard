@@ -70,15 +70,18 @@ function DashboardPerson() {
                 {/* Datepicker built with flatpickr */}
                 {/*<Datepicker />*/}
                 {/* Add view button */}
-                <button
-                    className="btn bg-indigo-500 text-white active:bg-indigo-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                    onClick={() => history.push(`/`)}
-                >
-                  <svg className="w-4 h-4 fill-current opacity-50 flex-shrink-0" viewBox="0 0 24 24">
-                    <path d="M12 9.059V6.5a1.001 1.001 0 0 0-1.707-.708L4 12l6.293 6.207a.997.997 0 0 0 1.414 0A.999.999 0 0 0 12 17.5v-2.489c2.75.068 5.755.566 8 3.989v-1c0-4.633-3.5-8.443-8-8.941z" fill="currentColor"/>
-                  </svg>
-                    <span className="hidden xs:block ml-2">К списку пользователей</span>
-                </button>
+
+                {/*<button*/}
+                {/*    className="btn bg-indigo-500 text-white active:bg-indigo-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"*/}
+                {/*    onClick={() => history.push(`/`)}*/}
+                {/*>*/}
+                {/*  <svg className="w-4 h-4 fill-current opacity-50 flex-shrink-0" viewBox="0 0 24 24">*/}
+                {/*    <path d="M12 9.059V6.5a1.001 1.001 0 0 0-1.707-.708L4 12l6.293 6.207a.997.997 0 0 0 1.414 0A.999.999 0 0 0 12 17.5v-2.489c2.75.068 5.755.566 8 3.989v-1c0-4.633-3.5-8.443-8-8.941z" fill="currentColor"/>*/}
+                {/*  </svg>*/}
+                {/*    <span className="hidden xs:block ml-2">К списку пользователей</span>*/}
+                {/*</button>*/}
+
+
               </div>
               <PageHeader page="person"/>
               {/*<FilterModal/>*/}
